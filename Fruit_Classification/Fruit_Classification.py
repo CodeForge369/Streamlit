@@ -322,7 +322,7 @@ def load_model():
     model_path = os.path.join(base_path, 'Fruit_Class2.keras')
     
     # 3. Load using the full path
-    return tf.keras.models.load_model(model_path)
+    return tf.keras.models.load_model(model_path,compile=False)
 
 model = load_model()
 
