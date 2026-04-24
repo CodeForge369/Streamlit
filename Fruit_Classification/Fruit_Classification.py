@@ -318,14 +318,15 @@ html, body,
 def load_model():
     base_path = os.path.dirname(__file__)
     
-    st.write("BASE:", base_path)
-    st.write("FILES:", os.listdir(base_path))
+    # st.write("BASE:", base_path)
+    # st.write("FILES:", os.listdir(base_path))
     
     # 2. Join that folder path with your model filename
-    model_path = os.path.join(base_path, 'Fruit_Class2.keras')
+    model_path = os.path.join(base_path, 'Fruit_Class2_fixed.keras')
     
     # 3. Load using the full path
     return tf.keras.models.load_model(model_path,compile=False)
+    
 
 model = load_model()
 
