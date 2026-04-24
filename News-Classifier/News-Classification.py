@@ -5,6 +5,7 @@ import re
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import pickle
+import os
 
 
 try:
@@ -17,10 +18,13 @@ st.set_page_config(page_title="News Classifier", layout="wide")
 st.title('Smart News Classifier')
 st.markdown('----')
 # Open the file in binary mode for reading
-with open('LogisticRegression.pickle', 'rb') as file:
-    # Load the data from the file
-    model = pickle.load(file)
+base_path = os.path.dirname(__file__)
 
+# Join the directory with your model filename
+model_path = os.path.join(base_path, 'LogisticRegression.pickle')
+
+with open(model_path, 'rb') as file:
+    model = pickle.load(file)
 
 #taking input from users
 data  = st.text_area("Enter New for the Classification")
