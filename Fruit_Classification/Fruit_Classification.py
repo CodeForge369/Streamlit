@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import tensorflow as tf
 from PIL import Image
+import os
 
 # ── Page Config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -315,7 +316,13 @@ html, body,
 # ── Model ──────────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('Fruit_Class2.keras')
+    base_path = os.path.dirname(__file__)
+    
+    # 2. Join that folder path with your model filename
+    model_path = os.path.join(base_path, 'Fruit_Class2.keras')
+    
+    # 3. Load using the full path
+    return tf.keras.models.load_model(model_path)
 
 model = load_model()
 
