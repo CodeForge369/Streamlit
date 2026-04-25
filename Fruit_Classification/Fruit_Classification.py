@@ -316,18 +316,13 @@ html, body,
 # ── Model ──────────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    base_path = os.path.dirname(__file__)
-    
-    # st.write("BASE:", base_path)
-    # st.write("FILES:", os.listdir(base_path))
-    
-    # 2. Join that folder path with your model filename
-    model_path = os.path.join(base_path, 'Fruit_Class3.keras')
-    
-    # 3. Load using the full path
-    return tf.keras.models.load_model(model_path,compile=False)
-    
-
+    try:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(base_path, "Fruit_Class3.keras")
+        return tf.keras.models.load_model(model_path, compile=False)
+    except Exception as e:
+        st.error(f"Model failed to load: {e}")
+        st.stop()
 model = load_model()
 
 CLASS_NAME = ['Apple', 'Banana', 'Avocado', 'Cherry', 'Kiwi',
