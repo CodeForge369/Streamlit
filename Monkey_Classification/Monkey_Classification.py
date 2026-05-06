@@ -3,6 +3,7 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import pandas as pd
+import os
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE CONFIG
@@ -455,8 +456,13 @@ BAR_COLORS = [
 # ─────────────────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_classifier():
-    return tf.keras.models.load_model('Monkey_Species.keras')
-
+    try:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(base_path, "Monkey_Species.keras")
+        return tf.keras.models.load_model(model_path, compile=False)
+    except Exception as e:
+        st.error(f"Model failed to load: {e}")
+        st.stop()
 model = load_classifier()
 
 # ─────────────────────────────────────────────────────────────────────────────
