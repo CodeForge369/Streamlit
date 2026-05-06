@@ -455,7 +455,7 @@ BAR_COLORS = [
 # ─────────────────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_classifier():
-    return tf.keras.models.load_model('Monkey_Species2.keras')
+    return tf.keras.models.load_model('Monkey_Species.keras')
 
 model = load_classifier()
 
@@ -550,7 +550,7 @@ if uploaded_file is not None:
     # ── Left: image + stats
     with col_l:
         st.markdown('<div class="sec-label">Input Image</div>', unsafe_allow_html=True)
-        st.image(image, use_container_width=True, caption=uploaded_file.name)
+        st.image(image, width="stretch", caption=uploaded_file.name)
 
         st.markdown(f"""
         <div class="stat-grid">
